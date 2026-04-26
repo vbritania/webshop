@@ -1,136 +1,155 @@
-(() => {
-  let activeFilter = 'all';
-  let maxPrice = 500;
-  let sortMode = 'default';
-  let searchQuery = '';
+let html = '';
 
-  function getFiltered() {
-    let list = PRODUCTS.slice();
+html = `
+  <div class="product-card">
+    <div class="product-img">
+      <img src="cable-managment.jpg" alt="Cable Management Kit">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Technik</div>
+      <div class="product-name">Cable Management Kit</div>
+      <div class="product-desc">Organize cables neatly with adjustable straps and clips.</div>
+      <div class="product-footer">
+        <div class="product-price">12,99€</div>
+        <button class="btn-cart" data-id="1">+</button>
+      </div>
+    </div>
+  </div>
 
-    if (activeFilter !== 'all') {
-      if (activeFilter === 'sale') {
-        list = list.filter(p => p.badge === 'sale');
-      } else {
-        list = list.filter(p => p.category === activeFilter);
-      }
-    }
+  <div class="product-card">
+    <div class="product-img">
+      <img src="chalk.webp" alt="Climbing Chalk">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Fitness</div>
+      <div class="product-name">Climbing Chalk</div>
+      <div class="product-desc">Improve grip and reduce moisture during workouts.</div>
+      <div class="product-footer">
+        <div class="product-price">8,99€</div>
+        <button class="btn-cart" data-id="2">+</button>
+      </div>
+    </div>
+  </div>
 
-    list = list.filter(p => p.price <= maxPrice);
+  <div class="product-card">
+    <div class="product-img">
+      <img src="digital-multimeter.jpg" alt="Digital Multimeter">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Tools</div>
+      <div class="product-name">Digital Multimeter</div>
+      <div class="product-desc">Measure voltage, current, and resistance with high accuracy.</div>
+      <div class="product-footer">
+        <div class="product-price">24,99€</div>
+        <button class="btn-cart" data-id="3">+</button>
+      </div>
+    </div>
+  </div>
 
-    if (searchQuery) {
-      const q = searchQuery.toLowerCase();
-      list = list.filter(p =>
-        p.name.toLowerCase().includes(q) ||
-        p.desc.toLowerCase().includes(q) ||
-        p.category.toLowerCase().includes(q)
-      );
-    }
+  <div class="product-card">
+    <div class="product-img">
+      <img src="foam-roller.jpg" alt="Foam Roller">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Fitness</div>
+      <div class="product-name">Foam Roller</div>
+      <div class="product-desc">Relieve muscle tension and aid recovery after exercise.</div>
+      <div class="product-footer">
+        <div class="product-price">19,99€</div>
+        <button class="btn-cart" data-id="4">+</button>
+      </div>
+    </div>
+  </div>
 
-    if (sortMode === 'price-asc')  list.sort((a, b) => a.price - b.price);
-    if (sortMode === 'price-desc') list.sort((a, b) => b.price - a.price);
-    if (sortMode === 'name')       list.sort((a, b) => a.name.localeCompare(b.name));
+  <div class="product-card">
+    <div class="product-img">
+      <img src="knee-sleeves.webp" alt="Knee Sleeves">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Fitness</div>
+      <div class="product-name">Knee Sleeves</div>
+      <div class="product-desc">Provide warmth and support for knees during heavy lifts.</div>
+      <div class="product-footer">
+        <div class="product-price">34,99€</div>
+        <button class="btn-cart" data-id="5">+</button>
+      </div>
+    </div>
+  </div>
 
-    return list;
-  }
+  <div class="product-card">
+    <div class="product-img">
+      <img src="power-belt.webp" alt="Powerlifting Belt">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Fitness</div>
+      <div class="product-name">Powerlifting Belt</div>
+      <div class="product-desc">Enhance lumbar support and intra-abdominal pressure.</div>
+      <div class="product-footer">
+        <div class="product-price">39,99€</div>
+        <button class="btn-cart" data-id="6">+</button>
+      </div>
+    </div>
+  </div>
 
-  function renderCard(p) {
-    const oldPrice = p.oldPrice ? `<span class="old-price">${p.oldPrice.toFixed(2).replace('.', ',')}€</span>` : '';
-    const badge = p.badge ? `<span class="product-badge ${p.badge}">${p.badge === 'new' ? 'Neu' : 'Sale'}</span>` : '';
+  <div class="product-card">
+    <div class="product-img">
+      <img src="resistance-band.webp" alt="Resistance Band Set">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Fitness</div>
+      <div class="product-name">Resistance Band Set</div>
+      <div class="product-desc">Versatile bands for strength training and stretching.</div>
+      <div class="product-footer">
+        <div class="product-price">14,99€</div>
+        <button class="btn-cart" data-id="7">+</button>
+      </div>
+    </div>
+  </div>
 
-    return `
-      <article class="product-card" data-id="${p.id}">
-        <div class="product-img" style="background:${p.color || 'var(--surface)'}">
-          ${badge}
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div class="product-info">
-          <div class="product-category">${p.category === 'fitness' ? 'Fitness' : 'Technik'}</div>
-          <div class="product-name">${p.name}</div>
-          <div class="product-desc">${p.desc}</div>
-          <div class="product-footer">
-            <div class="product-price">
-              ${oldPrice}
-              ${p.price.toFixed(2).replace('.', ',')}€
-            </div>
-            <button class="btn-cart" data-id="${p.id}">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              In den Korb
-            </button>
-          </div>
-        </div>
-      </article>
-    `;
-  }
+  <div class="product-card">
+    <div class="product-img">
+      <img src="screwdriver-set.jpg" alt="Screwdriver Set">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Tools</div>
+      <div class="product-name">Screwdriver Set</div>
+      <div class="product-desc">Precision screwdrivers for electronics and household repairs.</div>
+      <div class="product-footer">
+        <div class="product-price">18,99€</div>
+        <button class="btn-cart" data-id="8">+</button>
+      </div>
+    </div>
+  </div>
 
-  function render() {
-    const grid = document.getElementById('productsGrid');
-    const countEl = document.getElementById('productsCount');
-    const list = getFiltered();
+  <div class="product-card">
+    <div class="product-img">
+      <img src="soldering-station.jpg" alt="Soldering Station">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Electronics</div>
+      <div class="product-name">Soldering Station</div>
+      <div class="product-desc">Adjustable temperature soldering iron for DIY projects.</div>
+      <div class="product-footer">
+        <div class="product-price">49,99€</div>
+        <button class="btn-cart" data-id="9">+</button>
+      </div>
+    </div>
+  </div>
 
-    countEl.textContent = `${list.length} Produkt${list.length !== 1 ? 'e' : ''}`;
+  <div class="product-card">
+    <div class="product-img">
+      <img src="USB.jpg" alt="USB Flash Drive">
+    </div>
+    <div class="product-info">
+      <div class="product-category">Electronics</div>
+      <div class="product-name">USB Flash Drive</div>
+      <div class="product-desc">High-speed storage for files and backups.</div>
+      <div class="product-footer">
+        <div class="product-price">12,99€</div>
+        <button class="btn-cart" data-id="10">+</button>
+      </div>
+    </div>
+  </div>
+`;
 
-    if (list.length === 0) {
-      grid.innerHTML = `<div class="no-results"><p>Keine Produkte gefunden</p></div>`;
-      return;
-    }
-
-    grid.innerHTML = list.map(renderCard).join('');
-
-    grid.querySelectorAll('.btn-cart').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const id = parseInt(btn.dataset.id);
-        const product = PRODUCTS.find(p => p.id === id);
-        if (!product) return;
-        Cart.add(product);
-        btn.classList.add('added');
-        btn.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          Hinzugefügt
-        `;
-        setTimeout(() => {
-          btn.classList.remove('added');
-          btn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            In den Korb
-          `;
-        }, 1800);
-      });
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    render();
-
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeFilter = btn.dataset.filter;
-        render();
-      });
-    });
-
-    const range = document.getElementById('priceRange');
-    const priceVal = document.getElementById('priceVal');
-    range?.addEventListener('input', () => {
-      maxPrice = parseInt(range.value);
-      priceVal.textContent = maxPrice + '€';
-      render();
-    });
-
-    document.getElementById('sortSelect')?.addEventListener('change', e => {
-      sortMode = e.target.value;
-      render();
-    });
-
-    let searchTimer;
-    document.getElementById('searchInput')?.addEventListener('input', e => {
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(() => {
-        searchQuery = e.target.value.trim();
-        render();
-      }, 250);
-    });
-  });
-})();
+document.querySelector(".products-grid").innerHTML = html;
