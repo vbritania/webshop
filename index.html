@@ -30,7 +30,7 @@
       <a href="profile.html" class="nav-btn" title="Profil">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       </a>
-      <button class="nav-btn" >
+      <button class="nav-btn js-cart" >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
@@ -81,29 +81,17 @@
         <option value="name">Name A–Z</option>
       </select>
     </div>
-    <div class="products-grid" ></div>
+    <div class="products-grid" >
+      
+    </div>
+   
   </main>
 </div>
 
-<div class="cart-overlay" id="cartOverlay"></div>
-<div class="cart-drawer" id="cartDrawer">
-  <div class="cart-head">
-    <h2>Warenkorb</h2>
-    <button class="cart-close" id="cartClose">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="cart-items" id="cartItems"></div>
-  <div class="cart-foot" id="cartFoot" style="display:none">
-    <div class="cart-summary">
-      <span class="cart-total-label">Gesamt</span>
-      <span class="cart-total-price" id="cartTotal">0,00€</span>
-    </div>
-    <button class="btn-checkout">Zur Kasse →</button>
-  </div>
+<div class="cart">
+  
 </div>
 
-<div class="toast-container" id="toastContainer"></div>
 
 <footer>
   <p>© 2025 <strong>FORGE SHOP</strong> — Fitness &amp; Technik</p>

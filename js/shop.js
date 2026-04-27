@@ -4,7 +4,7 @@ products.forEach((products) => {
   productsHtml += `
   <div class="product-card">
     <div class="product-img">
-      <img src="../images/products/${products.image}" alt="Cable Management Kit">
+    <img src="images/products/${products.img}" alt="">
     </div>
     <div class="product-info">
       <div class="product-category">${products.category}</div>
@@ -48,5 +48,47 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
   });
 });
 
+let cartTrue;
 
 
+document.querySelector('.js-cart').addEventListener('click', () => {
+  if(!cartTrue){
+     
+  document.querySelector('.cart').innerHTML =
+  `<div class="cart-sidebar">
+    <h1> po</h1>
+  <header>
+    <h2>Warenkorb</h2>
+    <span id="cartCount">0 Artikel</span>
+  </header>
+ 
+ 
+ 
+  <!-- Items -->
+  <div class="cart-items">
+
+  </div>
+ 
+  <!-- Footer -->
+  <footer id="cartFoot" style="display:none">
+    <div class="cart-subtotal">
+      <span>Gesamt</span>
+      <strong id="cartTotal">0,00 €</strong>
+    </div>
+    <hr class="cart-divider">
+    <button class="btn-checkout">Zur Kasse</button>
+    <button class="btn-continue">Weiter einkaufen</button>
+  </footer>
+ 
+</div>`;
+cartTrue = true;
+console.log(cartTrue);
+  }
+
+  else{
+     document.querySelector('.cart').innerHTML = ``;
+     cartTrue = false;
+     console.log(cartTrue + "nein");
+  }
+
+});
