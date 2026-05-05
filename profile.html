@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil — FORGE SHOP</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/nav.css">
+  <link rel="stylesheet" href="styles/cart.css">
+  <link rel="stylesheet" href="styles/profile.css">
+  <link rel="stylesheet" href="styles/utils.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">FORGE<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Shop</a></li>
+      <li><a href="index.html#fitness">Fitness</a></li>
+      <li><a href="index.html#technik">Technik</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="profile.html" class="nav-btn" title="Profil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </a>
+      <button class="nav-btn" id="cartBtn" title="Warenkorb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="profile-layout">
+  <aside>
+    <div class="profile-card">
+      <div class="avatar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </div>
+      <div class="profile-name" id="displayName">Max Mustermann</div>
+      <div class="profile-email" id="displayEmail">max@example.com</div>
+      <div class="profile-stat">
+        <div>
+          <div class="stat-val" id="statOrders">3</div>
+          <div class="stat-label">Bestellungen</div>
+        </div>
+        <div>
+          <div class="stat-val" id="statTotal">284€</div>
+          <div class="stat-label">Ausgaben</div>
+        </div>
+      </div>
+      <button class="profile-nav-item active" data-section="account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        Konto
+      </button>
+      <button class="profile-nav-item" data-section="orders">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+        Bestellungen
+      </button>
+      <button class="profile-nav-item" data-section="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        Einstellungen
+      </button>
+    </div>
+  </aside>
+
+  <div>
+    <section class="profile-section active" id="section-account">
+      <div class="section-title">Mein Konto</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname</label>
+          <input type="text" class="form-input" id="firstName" value="Max">
+        </div>
+        <div class="form-group">
+          <label>Nachname</label>
+          <input type="text" class="form-input" id="lastName" value="Mustermann">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="email" class="form-input" id="email" value="max@example.com">
+      </div>
+      <div class="form-group">
+        <label>Telefon</label>
+        <input type="tel" class="form-input" id="phone" placeholder="+43 …">
+      </div>
+      <div class="form-group">
+        <label>Adresse</label>
+        <input type="text" class="form-input" id="address" placeholder="Straße, Hausnummer">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>PLZ</label>
+          <input type="text" class="form-input" id="zip" placeholder="6800">
+        </div>
+        <div class="form-group">
+          <label>Stadt</label>
+          <input type="text" class="form-input" id="city" placeholder="Feldkirch">
+        </div>
+      </div>
+      <button class="btn-save" id="saveBtn">Speichern</button>
+    </section>
+
+    <section class="profile-section" id="section-orders">
+      <div class="section-title">Bestellungen</div>
+      <div id="ordersList"></div>
+    </section>
+
+    <section class="profile-section" id="section-settings">
+      <div class="section-title">Einstellungen</div>
+      <div class="form-group">
+        <label>Neues Passwort</label>
+        <input type="password" class="form-input" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label>Passwort bestätigen</label>
+        <input type="password" class="form-input" placeholder="••••••••">
+      </div>
+      <button class="btn-save">Passwort ändern</button>
+    </section>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h2>Warenkorb</h2>
+    <button class="cart-close" id="cartClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-summary">
+      <span class="cart-total-label">Gesamt</span>
+      <span class="cart-total-price" id="cartTotal">0,00€</span>
+    </div>
+    <button class="btn-checkout">Zur Kasse →</button>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+.profile-layout {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px var(--gap);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 760px) {
+  .profile-layout { grid-template-columns: 1fr; }
+}
+
+.profile-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  height: fit-content;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.avatar svg { width: 44px; height: 44px; color: var(--muted); }
+
+.profile-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.profile-email {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.profile-stat {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.stat-val {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.profile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+  width: 100%;
+  text-align: left;
+}
+
+.profile-nav-item:hover { color: var(--text); background: var(--surface); }
+.profile-nav-item.active { color: var(--accent); background: rgba(255,92,26,0.08); }
+.profile-nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+.profile-section { display: none; }
+.profile-section.active { display: block; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.btn-save {
+  padding: 12px 28px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  transition: background 0.2s;
+}
+
+.btn-save:hover { background: #e04a10; }
+
+.order-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.order-id {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.order-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.order-meta {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.order-price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.order-status {
+  padding: 4px 10px;
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.status-delivered { background: rgba(45,206,110,0.12); color: var(--success); }
+.status-shipped   { background: rgba(255,184,0,0.12);  color: var(--accent2); }
+.status-pending   { background: rgba(255,92,26,0.12);  color: var(--accent); }
